@@ -6,11 +6,10 @@ import (
 	"net"
 )
 
-// NsLookup is a handler to get and show the name servers of a domain
-func NsLookup() fiber.Handler {
+// CnameLookup is a handler to get and show the CNAME records of a domain
+func CnameLookup() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		var domain models.Request
-		var nsResponse models.ResponseNs
 
 		err := ctx.BodyParser(&domain)
 		if err != nil {
@@ -18,11 +17,10 @@ func NsLookup() fiber.Handler {
 			return ctx.Status(fiber.StatusUnprocessableEntity).JSON(parseErr.PresentError())
 		}
 
-		nameServers, _ := net.LookupNS(domain.Domain)
-		for _, ns := range nameServers {
-			nsResponse.NameServer = append(nsResponse.NameServer, ns.Host)
-		}
+		cname, _ := net.LookupCNAME(domain.Domain)
 
-		return ctx.Status(fiber.StatusOK).JSON(nsResponse.PresentNs())
+		cnamePres := models.ResponseCname{Cname: cname}
+
+		return ctx.Status(fiber.StatusOK).JSON(cnamePres.PresentCname())
 	}
 }

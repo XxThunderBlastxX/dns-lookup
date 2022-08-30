@@ -16,5 +16,7 @@ func Router(app *fiber.App) {
 
 	//name server route
 	app.Get("/ns", middleware.RateLimiting(), controller.NsLookup())
+	//cname route
+	app.Get("/cname", middleware.RateLimiting(), controller.CnameLookup())
 
 }
