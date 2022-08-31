@@ -22,6 +22,6 @@ func MxLookup() fiber.Handler {
 			mxResponse.Mx = append(mxResponse.Mx, mx.Host)
 		}
 
-		return ctx.Status(fiber.StatusOK).JSON(mxResponse)
+		return ctx.Status(fiber.StatusOK).JSON(mxResponse.PresentMx())
 	}
 }

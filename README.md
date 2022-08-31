@@ -34,7 +34,7 @@ go build -o dns.exe
 
 ```json
 {
-  "domain": "koustavmondal.me"
+  "domain": "google.com"
 }
 ```
 
@@ -44,7 +44,12 @@ go build -o dns.exe
 {
   "status": "true",
   "error": "nil",
-  "name_server": ["dorthy.ns.cloudflare.com.", "seth.ns.cloudflare.com."]
+  "name_server": [
+    "ns2.google.com.",
+    "ns3.google.com.",
+    "ns4.google.com.",
+    "ns1.google.com."
+  ]
 }
 ```
 
@@ -78,7 +83,7 @@ go build -o dns.exe
 
 ```json
 {
-  "domain": "koustavmondal.me"
+  "domain": "google.com"
 }
 ```
 
@@ -86,13 +91,43 @@ go build -o dns.exe
 
 ```json
 {
-  "status": "",
-  "error": "",
+  "status": "true",
+  "error": "nil",
   "txt_record": [
-    "v=spf1 redirect=_spf.facebook.com",
-    "google-site-verification=A2WZWCNQHrGV_TWwKh6KHY90tY0SHZo_RnyMJoDaG0s",
-    "google-site-verification=sK6uY9x7eaMoEMfn3OILqwTFYgaNp4llmguKI-C3_iA",
-    "google-site-verification=wdH5DTJTc9AYNwVunSVFeK0hYDGUIEOGb-RReU6pJlY"
+    "docusign=1b0a6754-49b1-4db5-8540-d2c12664b289",
+    "google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ",
+    "v=spf1 include:_spf.google.com ~all",
+    "onetrust-domain-verification=de01ed21f2fa4d8781cbc3ffb89cf4ef",
+    "docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e",
+    "facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95",
+    "globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8=",
+    "MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB",
+    "google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o",
+    "webexdomainverification.8YX6G=6e6922db-e3e6-4a36-904e-a805c28087fa",
+    "atlassian-domain-verification=5YjTmWmjI92ewqkx2oXmBaD60Td9zWon9r6eakvHX6B77zzkFQto8PQ9QsKnbf4I",
+    "apple-domain-verification=30afIBcvSuDV2PLX"
   ]
+}
+```
+
+<br>
+
+### How to Get MX Record
+
+- Request sent :-
+
+```json
+{
+  "domain": "google.com"
+}
+```
+
+- Response you will get :-
+
+```json
+{
+  "status": "true",
+  "error": "nil",
+  "mx": ["smtp.google.com."]
 }
 ```

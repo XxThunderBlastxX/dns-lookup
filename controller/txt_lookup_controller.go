@@ -22,6 +22,6 @@ func TxtLookup() fiber.Handler {
 			txtResponse.Txt = append(txtResponse.Txt, txt)
 		}
 
-		return ctx.Status(fiber.StatusOK).JSON(txtResponse)
+		return ctx.Status(fiber.StatusOK).JSON(txtResponse.PresentTxt())
 	}
 }
