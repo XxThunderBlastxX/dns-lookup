@@ -6,22 +6,22 @@ import (
 	"net"
 )
 
-// TxtLookup is a handler to fetch all the txt record for a domain
-func TxtLookup() fiber.Handler {
+// MxLookup is a handler to fetch all the mx record for a domain
+func MxLookup() fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		var domain models.Request
-		var txtResponse models.ResponseTxt
+		var mxResponse models.ResponseMx
 
 		if err := ctx.BodyParser(&domain); err != nil {
 			reqErr := models.ResponseErr{Error: err.Error()}
 			return ctx.Status(fiber.StatusUnprocessableEntity).JSON(reqErr)
 		}
 
-		txtRecords, _ := net.LookupTXT(domain.Domain)
-		for _, txt := range txtRecords {
-			txtResponse.Txt = append(txtResponse.Txt, txt)
+		mxRecords, _ := net.LookupMX(domain.Domain)
+		for _, mx := range mxRecords {
+			mxResponse.Mx = append(mxResponse.Mx, mx.Host)
 		}
 
-		return ctx.Status(fiber.StatusOK).JSON(txtResponse)
+		return ctx.Status(fiber.StatusOK).JSON(mxResponse)
 	}
 }

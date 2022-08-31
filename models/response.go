@@ -14,6 +14,13 @@ type ResponseCname struct {
 	Cname  string `json:"cname"`
 }
 
+// ResponseMx is a response struct of mx record
+type ResponseMx struct {
+	Status string   `json:"status"`
+	Error  string   `json:"error"`
+	Mx     []string `json:"mx"`
+}
+
 // ResponseTxt is a response struct of txt record
 type ResponseTxt struct {
 	Status string   `json:"status"`
@@ -59,5 +66,14 @@ func (t *ResponseTxt) PresentTxt() *ResponseTxt {
 		Status: "true",
 		Error:  "nil",
 		Txt:    t.Txt,
+	}
+}
+
+// PresentMx is a presentation method to show response of mx records response
+func (m *ResponseMx) PresentMx() *ResponseMx {
+	return &ResponseMx{
+		Status: "true",
+		Error:  "nil",
+		Mx:     m.Mx,
 	}
 }
