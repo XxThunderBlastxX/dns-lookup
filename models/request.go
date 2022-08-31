@@ -1,6 +1,6 @@
 package models
 
-// Request send to name server/CNAME request body
+// Request send to NS/CNAME/txt  request body
 type Request struct {
 	Domain string `json:"domain"`
 }

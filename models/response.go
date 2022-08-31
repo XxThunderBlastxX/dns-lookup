@@ -14,6 +14,13 @@ type ResponseCname struct {
 	Cname  string `json:"cname"`
 }
 
+// ResponseTxt is a response struct of txt record
+type ResponseTxt struct {
+	Status string   `json:"status"`
+	Error  string   `json:"error"`
+	Txt    []string `json:"txt_record"`
+}
+
 // ResponseErr is a response thrown when caught an error
 type ResponseErr struct {
 	Status string `json:"status"`
@@ -43,5 +50,14 @@ func (c *ResponseCname) PresentCname() *ResponseCname {
 		Status: "true",
 		Error:  "nil",
 		Cname:  c.Cname,
+	}
+}
+
+// PresentTxt is a presentation method to show response of txt response
+func (t *ResponseTxt) PresentTxt() *ResponseTxt {
+	return &ResponseTxt{
+		Status: "true",
+		Error:  "nil",
+		Txt:    t.Txt,
 	}
 }

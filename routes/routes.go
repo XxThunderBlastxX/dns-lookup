@@ -18,5 +18,7 @@ func Router(app *fiber.App) {
 	app.Get("/ns", middleware.RateLimiting(), controller.NsLookup())
 	//cname route
 	app.Get("/cname", middleware.RateLimiting(), controller.CnameLookup())
+	//txt record route
+	app.Get("/txt", middleware.RateLimiting(), controller.TxtLookup())
 
 }
